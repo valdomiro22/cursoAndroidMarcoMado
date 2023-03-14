@@ -1,4 +1,4 @@
-package com.santos.valdomiro.applistacurso
+package com.santos.valdomiro.applistacurso.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

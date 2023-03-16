@@ -2,12 +2,15 @@ package com.santos.valdomiro.applistacursojava.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.santos.valdomiro.applistacursojava.controller.PessoaController;
 import com.santos.valdomiro.applistacursojava.databinding.ActivityMainBinding;
 import com.santos.valdomiro.applistacursojava.model.Pessoa;
 
@@ -16,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
 
     Pessoa pessoa;
+    PessoaController controller;
+
+    SharedPreferences preferences;
+    public static final String PREFERENCES_NAME = "pref_lista_vip";
 
     EditText editPrimeiroNome;
     EditText editSobrenome;
@@ -34,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         inicializarElementos();
 
+        controller = new PessoaController();
+
         pessoa = new Pessoa();
         pessoa.setPrimeiroNome("Valdomiro");
         pessoa.setSobrenome("Santos");
@@ -50,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         editSobrenome.setText(pessoa.getSobrenome());
         editCursoDesejado.setText(pessoa.getCursoDesejado());
         editTextTelefoneContato.setText(pessoa.getTelefoneContato());
+
+        salvarNoSharedPreferences(pessoa);
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +116,19 @@ public class MainActivity extends AppCompatActivity {
         editSobrenome.setText("");
         editCursoDesejado.setText("");
         editTextTelefoneContato.setText("");
+
+    }
+
+    private void salvarNoSharedPreferences(Pessoa pessoa) {
+        preferences = getSharedPreferences(PREFERENCES_NAME, 0);
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor listaVip = preferences.edit();
+
+        listaVip.putString("primeiro_nome", pessoa.getPrimeiroNome());
+        listaVip.putString("sobrenome", pessoa.getSobrenome());
+        listaVip.putString("curso_desejado", pessoa.getCursoDesejado());
+        listaVip.putString("tel_contato", pessoa.getTelefoneContato());
+
+        listaVip.apply();
 
     }
 }

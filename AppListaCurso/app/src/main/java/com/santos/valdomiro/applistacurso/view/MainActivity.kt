@@ -42,15 +42,10 @@ class MainActivity : AppCompatActivity() {
             "Kotlin",
             "(16) 9 8475-1459")
 
-//        binding.editPrimeiroNome.setText(pessoa.primeiroNome)
-//        binding.editSobrenome.setText(pessoa.sobrenome)
-//        binding.editCursoDesejado.setText(pessoa.cursoDesejado)
-//        binding.editContato.setText(pessoa.telefoneContato)
-
         salvarNoSharedPreferences()
 
          btnLimpar.setOnClickListener {
-            limparCampos()
+            limparCamposESharedPreferences()
         }
 
         btnFinalizar.setOnClickListener {
@@ -64,18 +59,13 @@ class MainActivity : AppCompatActivity() {
         recuperarDoSharedPreferences()
     }
 
-    private fun limparCampos() {
+    private fun limparCamposESharedPreferences() {
         editPrimeiroNome.setText("")
         editSobrenome.setText("")
         editCursoDesejado.setText("")
         editTelefoneContato.setText("")
 
-        // Limpa o SharedPreferences
-        preferences = getSharedPreferences(preferencesName, 0)
-        val listaVip: SharedPreferences.Editor = preferences.edit()
-
-        listaVip.clear()
-        listaVip.apply()
+        limparSharedPreferences()
 
     }
 
@@ -137,7 +127,13 @@ class MainActivity : AppCompatActivity() {
         editTelefoneContato.setText(pessoa2.telefoneContato)
     }
 
+    private fun limparSharedPreferences() {
+        preferences = getSharedPreferences(preferencesName, 0)
+        val listaVip: SharedPreferences.Editor = preferences.edit()
 
+        listaVip.clear()
+        listaVip.apply()
+    }
 
 
 }

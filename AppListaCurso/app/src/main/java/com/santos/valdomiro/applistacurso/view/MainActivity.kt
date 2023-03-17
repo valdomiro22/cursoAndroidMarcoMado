@@ -1,5 +1,7 @@
 package com.santos.valdomiro.applistacurso.view
 
+import android.annotation.SuppressLint
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,12 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import com.santos.valdomiro.applistacurso.databinding.ActivityMainBinding
 import com.santos.valdomiro.applistacurso.model.Pessoa
+import java.util.prefs.AbstractPreferences
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
-    private lateinit var pessoa : Pessoa
 
     private lateinit var editPrimeiroNome: EditText
     private lateinit var editSobrenome: EditText
@@ -22,6 +23,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnLimpar: Button
     private lateinit var btnSalvar: Button
     private lateinit var btnFinalizar: Button
+
+    private lateinit var pessoa : Pessoa
+
+    private lateinit var preferences: SharedPreferences
+
+    val PREFERENCES_NAME: String = "pre_app_lista_vip"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +43,12 @@ class MainActivity : AppCompatActivity() {
             "Kotlin",
             "(16) 9 8475-1459")
 
-        binding.editPrimeiroNome.setText(pessoa.primeiroNome)
-        binding.editSobrenome.setText(pessoa.sobrenome)
-        binding.editCursoDesejado.setText(pessoa.cursoDesejado)
-        binding.editContato.setText(pessoa.telefoneContato)
+//        binding.editPrimeiroNome.setText(pessoa.primeiroNome)
+//        binding.editSobrenome.setText(pessoa.sobrenome)
+//        binding.editCursoDesejado.setText(pessoa.cursoDesejado)
+//        binding.editContato.setText(pessoa.telefoneContato)
+
+        salvarNoSharedPreferences()
 
          btnLimpar.setOnClickListener {
             limparCampos()
@@ -52,6 +61,8 @@ class MainActivity : AppCompatActivity() {
         btnSalvar.setOnClickListener {
             criarNovaPessoa()
         }
+
+        recuperarDoSharedPreferences()
     }
 
     private fun limparCampos() {
@@ -94,5 +105,38 @@ class MainActivity : AppCompatActivity() {
         btnFinalizar = binding.btnFinalizar
 
     }
+
+    @SuppressLint("CommitPrefEdits")
+    private fun salvarNoSharedPreferences() {
+        preferences = getSharedPreferences(PREFERENCES_NAME, 0)
+        val listaVip: SharedPreferences.Editor = preferences.edit()
+
+        listaVip.putString("primeiro_nome", pessoa.primeiroNome)
+        listaVip.putString("sobrenome", pessoa.sobrenome)
+        listaVip.putString("curso_desejado", pessoa.cursoDesejado)
+        listaVip.putString("tel_contato", pessoa.telefoneContato)
+        listaVip.apply()
+
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    private fun recuperarDoSharedPreferences() {
+        preferences = getSharedPreferences(PREFERENCES_NAME, 0)
+
+        val primeiroNome = preferences.getString("primeiro_nome", "vazio")!!
+        val sobrenome = preferences.getString("sobrenome", "vazio")!!
+        val cursoDesejado = preferences.getString("curso_desejado", "vazio")!!
+        val telContato = preferences.getString("tel_contato", "vazio")!!
+
+        val pessoa2: Pessoa = Pessoa(primeiroNome, sobrenome, cursoDesejado, telContato)
+
+        editPrimeiroNome.setText(pessoa2.primeiroNome)
+        editSobrenome.setText(pessoa2.sobrenome)
+        editCursoDesejado.setText(pessoa2.cursoDesejado)
+        editTelefoneContato.setText(pessoa2.telefoneContato)
+    }
+
+
+
 
 }

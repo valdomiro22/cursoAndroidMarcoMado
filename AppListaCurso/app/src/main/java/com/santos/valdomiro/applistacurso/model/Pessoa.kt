@@ -6,13 +6,3 @@ class Pessoa(
     var cursoDesejado: String,
     var telefoneContato: String) {
 }
-
-
-//class Pessoa {
-//    var primeiroNome: String = ""
-//    var sobrenome: String = ""
-//    var cursoDesejado: String = ""
-//    var telefoneContato: String = ""
-//
-//
-//}

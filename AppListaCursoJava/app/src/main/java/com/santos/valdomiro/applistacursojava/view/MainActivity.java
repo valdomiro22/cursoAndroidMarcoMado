@@ -131,4 +131,8 @@ public class MainActivity extends AppCompatActivity {
         listaVip.apply();
 
     }
+
+    private void recuperarDoSharedPreferences() {
+
+    }
 }

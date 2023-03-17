@@ -3,6 +3,8 @@ package com.santos.valdomiro.applistacurso.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import com.santos.valdomiro.applistacurso.databinding.ActivityMainBinding
 import com.santos.valdomiro.applistacurso.model.Pessoa
 
@@ -12,10 +14,21 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var pessoa : Pessoa
 
+    private lateinit var editPrimeiroNome: EditText
+    private lateinit var editSobrenome: EditText
+    private lateinit var editCursoDesejado: EditText
+    private lateinit var editTelefoneContato: EditText
+
+    private lateinit var btnLimpar: Button
+    private lateinit var btnSalvar: Button
+    private lateinit var btnFinalizar: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        inicializarComponentes()
 
         pessoa = Pessoa(
             "Valdomiro",
@@ -28,15 +41,15 @@ class MainActivity : AppCompatActivity() {
         binding.editCursoDesejado.setText(pessoa.cursoDesejado)
         binding.editContato.setText(pessoa.telefoneContato)
 
-        binding.btnLimpar.setOnClickListener {
+         btnLimpar.setOnClickListener {
             limparCampos()
         }
 
-        binding.btnFinalizar.setOnClickListener {
+        btnFinalizar.setOnClickListener {
             finish()
         }
 
-        binding.btnSalvar.setOnClickListener {
+        btnSalvar.setOnClickListener {
             criarNovaPessoa()
         }
     }
@@ -47,10 +60,11 @@ class MainActivity : AppCompatActivity() {
         binding.editCursoDesejado.setText("")
         binding.editContato.setText("")
 
-        binding.editPrimeiroNome.hint = ""
-        binding.editSobrenome.hint = ""
-        binding.editCursoDesejado.hint = ""
-        binding.editContato.hint = ""
+//        binding.editPrimeiroNome.hint = ""
+//        binding.editSobrenome.hint = ""
+//        binding.editCursoDesejado.hint = ""
+//        binding.editContato.hint = ""
+
     }
 
     private fun criarNovaPessoa() {
@@ -66,6 +80,19 @@ class MainActivity : AppCompatActivity() {
                 "${pessoa2.sobrenome} \n" +
                 "${pessoa2.cursoDesejado} \n" +
                 "${pessoa2.telefoneContato} ")
+
+    }
+
+    private fun inicializarComponentes() {
+        editPrimeiroNome = binding.editPrimeiroNome
+        editSobrenome = binding.editSobrenome
+        editCursoDesejado = binding.editCursoDesejado
+        editTelefoneContato = binding.editContato
+
+        btnLimpar = binding.btnLimpar
+        btnSalvar = binding.btnSalvar
+        btnFinalizar = binding.btnFinalizar
+
     }
 
 }

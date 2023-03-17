@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import com.santos.valdomiro.applistacurso.databinding.ActivityMainBinding
 import com.santos.valdomiro.applistacurso.model.Pessoa
-import java.util.prefs.AbstractPreferences
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var preferences: SharedPreferences
 
-    val PREFERENCES_NAME: String = "pre_app_lista_vip"
+    private val preferencesName: String = "pre_app_lista_vip"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,15 +65,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun limparCampos() {
-        binding.editPrimeiroNome.setText("")
-        binding.editSobrenome.setText("")
-        binding.editCursoDesejado.setText("")
-        binding.editContato.setText("")
+        editPrimeiroNome.setText("")
+        editSobrenome.setText("")
+        editCursoDesejado.setText("")
+        editTelefoneContato.setText("")
 
-//        binding.editPrimeiroNome.hint = ""
-//        binding.editSobrenome.hint = ""
-//        binding.editCursoDesejado.hint = ""
-//        binding.editContato.hint = ""
+        // Limpa o SharedPreferences
+        preferences = getSharedPreferences(preferencesName, 0)
+        val listaVip: SharedPreferences.Editor = preferences.edit()
+
+        listaVip.clear()
+        listaVip.apply()
 
     }
 
@@ -108,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("CommitPrefEdits")
     private fun salvarNoSharedPreferences() {
-        preferences = getSharedPreferences(PREFERENCES_NAME, 0)
+        preferences = getSharedPreferences(preferencesName, 0)
         val listaVip: SharedPreferences.Editor = preferences.edit()
 
         listaVip.putString("primeiro_nome", pessoa.primeiroNome)
@@ -121,7 +122,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("CommitPrefEdits")
     private fun recuperarDoSharedPreferences() {
-        preferences = getSharedPreferences(PREFERENCES_NAME, 0)
+        preferences = getSharedPreferences(preferencesName, 0)
 
         val primeiroNome = preferences.getString("primeiro_nome", "vazio")!!
         val sobrenome = preferences.getString("sobrenome", "vazio")!!

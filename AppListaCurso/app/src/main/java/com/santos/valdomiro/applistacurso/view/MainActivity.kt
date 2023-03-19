@@ -1,8 +1,6 @@
 package com.santos.valdomiro.applistacurso.view
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,8 +26,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pessoa : Pessoa
     private lateinit var controller: PessoaController
 
-    private val preferencesName: String = "pre_app_lista_vip"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -37,30 +33,19 @@ class MainActivity : AppCompatActivity() {
 
         inicializarComponentes()
 
-//        controller = PessoaController(this)
         controller = PessoaController(this)
 
-        pessoa = Pessoa(
-            "Valdomiro",
-            "Santos",
-            "Kotlin",
-            "(16) 9 8475-1459")
+        btnSalvar.setOnClickListener {
+            controller.salvar(criarNovaPessoa())
+        }
 
-        salvarNoSharedPreferences()
-
-         btnLimpar.setOnClickListener {
+        btnLimpar.setOnClickListener {
             limparCamposESharedPreferences()
         }
 
         btnFinalizar.setOnClickListener {
             finish()
         }
-
-        btnSalvar.setOnClickListener {
-            criarNovaPessoa()
-        }
-
-        recuperarDoSharedPreferences()
     }
 
     private fun limparCamposESharedPreferences() {
@@ -73,22 +58,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun criarNovaPessoa() {
+    private fun criarNovaPessoa(): Pessoa {
+
         val primeiroNome = binding.editPrimeiroNome.text.toString()
         val sobrenome = binding.editSobrenome.text.toString()
-        val curso = binding.editCursoDesejado.text.toString()
-        val telContato = binding.editContato.text.toString()
+        val cursoDesejado = binding.editCursoDesejado.text.toString()
+        val telefoneContato = binding.editContato.text.toString()
 
-        val pessoa2 = Pessoa(primeiroNome, sobrenome, curso, telContato)
+        pessoa = Pessoa(primeiroNome, sobrenome, cursoDesejado, telefoneContato)
 
         Log.d("log", "criarNovaPessoa: \n" +
-                "${pessoa2.primeiroNome} \n" +
-                "${pessoa2.sobrenome} \n" +
-                "${pessoa2.cursoDesejado} \n" +
-                "${pessoa2.telefoneContato} ")
+                "${pessoa.primeiroNome} \n" +
+                "${pessoa.sobrenome} \n" +
+                "${pessoa.cursoDesejado} \n" +
+                "${pessoa.telefoneContato} ")
 
-        controller.salvar(pessoa2)
-
+        return pessoa
     }
 
     private fun inicializarComponentes() {
@@ -102,40 +87,5 @@ class MainActivity : AppCompatActivity() {
         btnFinalizar = binding.btnFinalizar
 
     }
-
-    @SuppressLint("CommitPrefEdits")
-    private fun salvarNoSharedPreferences() {
-
-//        listaVip.putString("primeiro_nome", pessoa.primeiroNome)
-//        listaVip.putString("sobrenome", pessoa.sobrenome)
-//        listaVip.putString("curso_desejado", pessoa.cursoDesejado)
-//        listaVip.putString("tel_contato", pessoa.telefoneContato)
-//        listaVip.apply()
-
-    }
-
-    @SuppressLint("CommitPrefEdits")
-    private fun recuperarDoSharedPreferences() {
-//        val primeiroNome = preferences.getString("primeiro_nome", "vazio")!!
-//        val sobrenome = preferences.getString("sobrenome", "vazio")!!
-//        val cursoDesejado = preferences.getString("curso_desejado", "vazio")!!
-//        val telContato = preferences.getString("tel_contato", "vazio")!!
-
-//        val pessoa2: Pessoa = Pessoa(primeiroNome, sobrenome, cursoDesejado, telContato)
-
-//        editPrimeiroNome.setText(pessoa2.primeiroNome)
-//        editSobrenome.setText(pessoa2.sobrenome)
-//        editCursoDesejado.setText(pessoa2.cursoDesejado)
-//        editTelefoneContato.setText(pessoa2.telefoneContato)
-    }
-
-    private fun limparSharedPreferences() {
-//        preferences = getSharedPreferences(preferencesName, 0)
-//        val listaVip: SharedPreferences.Editor = preferences.edit()
-//
-//        listaVip.clear()
-//        listaVip.apply()
-    }
-
 
 }

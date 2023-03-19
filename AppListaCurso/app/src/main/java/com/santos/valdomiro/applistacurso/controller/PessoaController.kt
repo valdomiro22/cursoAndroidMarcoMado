@@ -29,7 +29,7 @@ class PessoaController() {
         listaVip.apply()
     }
 
-    fun buscar() {
+    fun buscar(pessoa: Pessoa) {
 
     }
 

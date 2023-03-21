@@ -11,12 +11,13 @@ import android.widget.Spinner
 import com.santos.valdomiro.applistacurso.controller.CursoController
 import com.santos.valdomiro.applistacurso.controller.PessoaController
 import com.santos.valdomiro.applistacurso.databinding.ActivityMainBinding
+import com.santos.valdomiro.applistacurso.databinding.ActivitySpinnerBinding
 import com.santos.valdomiro.applistacurso.model.Curso
 import com.santos.valdomiro.applistacurso.model.Pessoa
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivitySpinnerBinding
 
     private lateinit var spinner: Spinner
 
@@ -39,7 +40,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+//        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySpinnerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         inicializarComponentes()

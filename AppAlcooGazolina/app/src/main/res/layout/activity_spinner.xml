@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+    <TextView android:id="@+id/txt_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/txt_titulo"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+    <EditText android:id="@+id/edit_primeiro_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:padding="12dp"
+        android:background="@drawable/fundo_campos"
+        android:ems="10"
+        android:hint="@string/edit_primeiro_nome"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:inputType="textPersonName"
+        android:autofillHints="no"
+        />
+
+    <EditText android:id="@+id/edit_sobrenome"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/edit_sobrenome"
+        android:textColor="@color/black"
+        android:padding="12dp"
+        android:background="@drawable/fundo_campos"
+        android:textColorHint="@color/black"
+        android:autofillHints="no"
+        />
+
+    <EditText android:id="@+id/edit_curso_desejado"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/edit_curso_desejado"
+        android:textColor="@color/black"
+        android:padding="12dp"
+        android:background="@drawable/fundo_campos"
+        android:textColorHint="@color/black"
+        android:autofillHints="no"
+        />
+
+    <EditText android:id="@+id/edit_contato"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/edit_contato"
+        android:textColor="@color/black"
+        android:padding="12dp"
+        android:background="@drawable/fundo_campos"
+        android:textColorHint="@color/black"
+        android:autofillHints="no"
+        />
+
+    <TextView android:id="@+id/txt_lista_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        android:text="@string/txt_selecione_curso"
+        android:padding="8dp"
+        android:background="@drawable/fundo_campos"
+        />
+
+    <Spinner android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button android:id="@+id/btn_limpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:padding="12dp"
+            android:text="@string/btn_limpar"
+            />
+
+        <View android:layout_width="1dp"
+            android:layout_height="5dp"
+            android:layout_weight="@integer/material_motion_duration_long_1"/>
+
+        <Button android:id="@+id/btn_salvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="30dp"
+            android:padding="12dp"
+            android:text="@string/tbn_salvar"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <Button android:id="@+id/btn_finalizar"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/btn_finalizar"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
